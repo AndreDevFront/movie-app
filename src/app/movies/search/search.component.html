@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="form-search">
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSubmit()"
+        class="form-container"
+      >
+        <div class="input-container">
+          <input
+            type="text"
+            id="title"
+            formControlName="title"
+            class="form-control input-search"
+          />
+        </div>
+
+        <div class="button-container">
+          <button type="submit" class="btn button btn-search">Search</button>
+          <button
+            type="reset"
+            class="btn btn-outline-dark button"
+            (click)="onReset()"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="movie$ | async as movie" class="movie-details container">
+  <section class="mb-3">
+    <div class="row mt-4">
+      <div class="col-lg-8 mb-4">
+        <header class="mb-2 mt-2">
+          <h2>{{ movie.Title }}</h2>
+          <small><strong>Ano: </strong>{{ movie.Year }}</small>
+        </header>
+
+        <div>
+          <p>
+            <strong>Genre: </strong>
+            <small>{{ movie.Genre }}</small>
+          </p>
+          <p>
+            <strong>Country: </strong>
+            <small>{{ movie.Country }}</small>
+          </p>
+          <p>
+            <strong>Director: </strong>
+            <small>{{ movie.Director }}</small>
+          </p>
+        </div>
+
+        <p>
+          <strong>{{ movie.Plot }}</strong>
+        </p>
+
+        <p>
+          <strong>Actor(s)</strong>
+          {{ movie.Actors }}
+        </p>
+        <app-star-rating
+          [rating]="+movie.imdbRating"
+          [maxStars]="10"
+        ></app-star-rating>
+      </div>
+      <div class="col">
+        <figure class="col-md-6">
+          <img [src]="movie.Poster" alt="{{ movie.Title }} poster" />
+        </figure>
+        <app-favorite-button></app-favorite-button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="error$ | async as error" class="error-message">
+  <p class="error">{{ error }}</p>
+</div>
