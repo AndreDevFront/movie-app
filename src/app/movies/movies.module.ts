@@ -25,7 +25,6 @@ import { moviesReducer } from './store/movies.reducer';
     StoreModule.forFeature('movies', moviesReducer),
     EffectsModule.forFeature([MoviesEffects]),
     RouterModule.forChild([{ path: '', component: SearchComponent }]),
-    StoreModule.forFeature('movies', moviesReducer),
     EffectsModule.forFeature([MoviesEffects]),
 
   ],
