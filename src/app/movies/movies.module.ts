@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -16,18 +16,18 @@ import { MoviesEffects } from './store/movies.effects';
 import { moviesReducer } from './store/movies.reducer';
 
 @NgModule({
-  declarations: [SearchComponent, StarRatingComponent,FavoriteButtonComponent],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     MoviesRoutingModule,
     StoreModule.forFeature('movies', moviesReducer),
     EffectsModule.forFeature([MoviesEffects]),
     RouterModule.forChild([{ path: '', component: SearchComponent }]),
     EffectsModule.forFeature([MoviesEffects]),
-
   ],
+  declarations: [SearchComponent, StarRatingComponent,FavoriteButtonComponent],
   providers: [MovieService]
 })
 export class MoviesModule { }

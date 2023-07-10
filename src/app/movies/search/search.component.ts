@@ -18,8 +18,6 @@ export class SearchComponent {
   movie$: Observable<Movie | null>;
   error$: Observable<any | null>;
 
-
-
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<fromMovies.MoviesState>
